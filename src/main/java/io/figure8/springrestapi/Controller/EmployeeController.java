@@ -14,8 +14,12 @@ public class EmployeeController {
     }
     @GetMapping("/employees/{id}")
     public String getEmployee(@PathVariable("id") Long id){
-        return "Fetching the employee details for the id " +id;
+        return "Fetching the employee details for the id  "+id;
 
+    }
+    @DeleteMapping("/employees")
+    public String deleteEmployee(@RequestParam("id")Long id) {
+        return "Deleting the employee details for the id " + id;
     }
 
 

@@ -1,11 +1,24 @@
 package io.figure8.springrestapi.Controller;
 
+import io.figure8.springrestapi.Model.Employee;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class EmployeeController {
+    @Value("${spring.application.name}")
+    private String appName;
+
+    @Value("${app.version}")
+    private String appVersion;
+
+    @GetMapping("/version")
+    public String getAppDetails (){
+        return appName+"-"+appVersion;
+    }
 
     //localhost:8080/employees GET
     @GetMapping("/employees")
@@ -17,6 +30,11 @@ public class EmployeeController {
         return "Fetching the employee details for the id  "+id;
 
     }
+    @PostMapping("/employees")
+    public String saveEmployee(@RequestBody Employee employee){
+        return "Saving the employee details to the database" + employee;
+    }
+
     @DeleteMapping("/employees")
     public String deleteEmployee(@RequestParam("id")Long id) {
         return "Deleting the employee details for the id " + id;

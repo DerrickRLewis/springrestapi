@@ -35,6 +35,11 @@ public class EmployeeController {
         return "Saving the employee details to the database" + employee;
     }
 
+    @PutMapping("/employees/{id}")
+    public Employee updateEmployee(@PathVariable Long id,@RequestBody Employee employee){
+        System.out.println("updating the employee data for the id " + id);
+        return employee;
+    }
     @DeleteMapping("/employees")
     public String deleteEmployee(@RequestParam("id")Long id) {
         return "Deleting the employee details for the id " + id;
